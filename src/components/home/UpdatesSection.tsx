@@ -1,6 +1,7 @@
 
 import React from "react";
 import { collegeInfo } from "@/data/college";
+import { Link } from "react-router-dom";
 
 const UpdatesSection = () => {
   const { updates } = collegeInfo;
@@ -13,18 +14,26 @@ const UpdatesSection = () => {
             LIVE UPDATES
           </div>
           <div className="overflow-hidden relative flex-1">
-            <div className="animate-marquee whitespace-nowrap flex gap-10">
+            <div className="whitespace-nowrap flex gap-10 animate-marquee">
               {updates.map((update, index) => (
-                <span key={index} className="text-gray-700 font-medium">
+                <Link 
+                  key={index} 
+                  to={`/news/${index + 1}`} 
+                  className="text-gray-700 font-medium hover:text-campus-primary transition-colors cursor-pointer"
+                >
                   {update}
-                </span>
+                </Link>
               ))}
             </div>
-            <div className="animate-marquee whitespace-nowrap flex gap-10 absolute top-0">
+            <div className="whitespace-nowrap flex gap-10 absolute top-0 animate-marquee2">
               {updates.map((update, index) => (
-                <span key={`clone-${index}`} className="text-gray-700 font-medium">
+                <Link 
+                  key={`clone-${index}`} 
+                  to={`/news/${index + 1}`}
+                  className="text-gray-700 font-medium hover:text-campus-primary transition-colors cursor-pointer"
+                >
                   {update}
-                </span>
+                </Link>
               ))}
             </div>
           </div>

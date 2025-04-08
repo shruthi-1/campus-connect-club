@@ -105,14 +105,20 @@
   @apply opacity-100;
 }
 
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes scroll2 {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(0); }
+}
+
 .animate-marquee {
-  min-width: 100%;
-  display: flex;
   animation: scroll 30s linear infinite;
 }
 
-.animate-marquee-reverse {
-  min-width: 100%;
-  display: flex;
-  animation: scroll 30s linear infinite reverse;
+.animate-marquee2 {
+  animation: scroll2 30s linear infinite;
 }
