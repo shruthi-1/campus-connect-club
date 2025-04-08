@@ -1,12 +1,33 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React from "react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import HeroSection from "@/components/home/HeroSection";
+import ClubsSection from "@/components/home/ClubsSection";
+import CollegeInfoSection from "@/components/home/CollegeInfoSection";
+import CoordinatorsSection from "@/components/home/CoordinatorsSection";
+import ReviewsSection from "@/components/home/ReviewsSection";
+import AdvantagesSection from "@/components/home/AdvantagesSection";
+import ContactSection from "@/components/home/ContactSection";
+import UpdatesSection from "@/components/home/UpdatesSection";
+import NotificationsSection from "@/components/home/NotificationsSection";
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
+      <main className="flex-1">
+        <HeroSection />
+        <UpdatesSection />
+        <ClubsSection />
+        <CollegeInfoSection />
+        <CoordinatorsSection />
+        <ReviewsSection />
+        <AdvantagesSection />
+        <NotificationsSection />
+        <ContactSection />
+      </main>
+      <Footer />
     </div>
   );
 };
