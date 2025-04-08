@@ -3,12 +3,28 @@ import React from "react";
 import { type Club } from "@/data/clubs";
 import { Calendar, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 
 interface ClubActivitiesProps {
   club: Club;
 }
 
 const ClubActivities: React.FC<ClubActivitiesProps> = ({ club }) => {
+  const { toast } = useToast();
+
+  const handleRegister = (activityTitle: string) => {
+    toast({
+      title: "Registration Successful",
+      description: `You've registered for ${activityTitle}!`,
+      duration: 3000,
+    });
+  };
+
+  // Default image if club activity image is missing
+  const getImageUrl = (image?: string) => {
+    return image || "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3";
+  };
+
   return (
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
@@ -25,7 +41,7 @@ const ClubActivities: React.FC<ClubActivitiesProps> = ({ club }) => {
             <div key={activity.id} className="bg-white rounded-xl overflow-hidden shadow border hover:shadow-lg transition-shadow">
               <div 
                 className="h-48 bg-cover bg-center" 
-                style={{ backgroundImage: `url(${activity.image})` }}
+                style={{ backgroundImage: `url(${getImageUrl(activity.image)})` }}
               ></div>
               <div className="p-6">
                 <div className="flex items-center text-sm text-campus-gray mb-3">
@@ -38,7 +54,10 @@ const ClubActivities: React.FC<ClubActivitiesProps> = ({ club }) => {
                 <p className="text-campus-gray mb-5">
                   {activity.description}
                 </p>
-                <Button className="w-full">
+                <Button 
+                  className="w-full"
+                  onClick={() => handleRegister(activity.title)}
+                >
                   Register Now <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </div>

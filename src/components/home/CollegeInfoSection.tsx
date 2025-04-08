@@ -2,6 +2,8 @@
 import React from "react";
 import { collegeInfo } from "@/data/college";
 import { Award, BookOpen, Users, Clock } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 const CollegeInfoSection = () => {
   return (
@@ -81,10 +83,17 @@ const CollegeInfoSection = () => {
           <h3 className="text-2xl font-bold text-campus-primary mb-6 text-center">Our Achievements</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {collegeInfo.achievements.map((achievement, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow border-t-4 border-campus-accent">
-                <p className="font-medium text-campus-gray">{achievement}</p>
-              </div>
+              <Link key={index} to="/achievements" className="block">
+                <div className="bg-white p-6 rounded-lg shadow border-t-4 border-campus-accent hover:shadow-md transition-shadow">
+                  <p className="font-medium text-campus-gray">{achievement}</p>
+                </div>
+              </Link>
             ))}
+          </div>
+          <div className="text-center mt-8">
+            <Button asChild>
+              <Link to="/achievements">View All Achievements</Link>
+            </Button>
           </div>
         </div>
       </div>

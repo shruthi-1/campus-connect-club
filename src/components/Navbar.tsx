@@ -3,13 +3,32 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { AlignJustify, X, User } from "lucide-react";
+import { AlignJustify, X, User, ChevronDown } from "lucide-react";
+import { 
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { useToast } from "@/hooks/use-toast";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { toast } = useToast();
   
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleLogin = (role: string) => {
+    // This is a placeholder for actual login logic
+    toast({
+      title: `${role} Login`,
+      description: `${role} login functionality will be implemented with backend.`,
+      duration: 3000,
+    });
   };
 
   return (
@@ -29,28 +48,41 @@ const Navbar = () => {
           <Link to="/" className="text-sm font-medium hover:text-campus-secondary transition-colors">
             Home
           </Link>
-          <Link to="/clubs/technical" className="text-sm font-medium hover:text-campus-secondary transition-colors">
-            Technical Club
-          </Link>
-          <Link to="/clubs/sports" className="text-sm font-medium hover:text-campus-secondary transition-colors">
-            Sports Club
-          </Link>
-          <Link to="/clubs/hobby" className="text-sm font-medium hover:text-campus-secondary transition-colors">
-            Hobby Club
-          </Link>
-          <Link to="/clubs/cultural" className="text-sm font-medium hover:text-campus-secondary transition-colors">
-            Cultural Club
+          <Link to="/clubs" className="text-sm font-medium hover:text-campus-secondary transition-colors">
+            Clubs
           </Link>
           <Link to="/results" className="text-sm font-medium hover:text-campus-secondary transition-colors">
             Results
           </Link>
+          <Link to="/achievements" className="text-sm font-medium hover:text-campus-secondary transition-colors">
+            Achievements
+          </Link>
           <Link to="/contact" className="text-sm font-medium hover:text-campus-secondary transition-colors">
             Contact
           </Link>
-          <Button size="sm" variant="outline" className="gap-1">
-            <User size={16} />
-            <span>Login</span>
-          </Button>
+          
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button size="sm" variant="outline" className="gap-1">
+                <User size={16} />
+                <span>Login</span>
+                <ChevronDown size={14} />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-56">
+              <DropdownMenuLabel>Select Login Type</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={() => handleLogin("Super Admin")}>
+                Super Admin Login
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => handleLogin("Staff")}>
+                Staff Login
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => handleLogin("Student")}>
+                Student Login
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </nav>
         
         {/* Mobile Menu Toggle */}
@@ -83,32 +115,11 @@ const Navbar = () => {
             Home
           </Link>
           <Link 
-            to="/clubs/technical" 
+            to="/clubs" 
             className="text-base font-medium p-2 hover:bg-campus-light rounded-md"
             onClick={() => setIsMenuOpen(false)}
           >
-            Technical Club
-          </Link>
-          <Link 
-            to="/clubs/sports" 
-            className="text-base font-medium p-2 hover:bg-campus-light rounded-md"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Sports Club
-          </Link>
-          <Link 
-            to="/clubs/hobby" 
-            className="text-base font-medium p-2 hover:bg-campus-light rounded-md"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Hobby Club
-          </Link>
-          <Link 
-            to="/clubs/cultural" 
-            className="text-base font-medium p-2 hover:bg-campus-light rounded-md"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Cultural Club
+            Clubs
           </Link>
           <Link 
             to="/results" 
@@ -118,16 +129,53 @@ const Navbar = () => {
             Results
           </Link>
           <Link 
+            to="/achievements" 
+            className="text-base font-medium p-2 hover:bg-campus-light rounded-md"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Achievements
+          </Link>
+          <Link 
             to="/contact" 
             className="text-base font-medium p-2 hover:bg-campus-light rounded-md"
             onClick={() => setIsMenuOpen(false)}
           >
             Contact
           </Link>
-          <Button className="mt-2">
-            <User size={16} className="mr-2" />
-            Login
-          </Button>
+          
+          <div className="border-t pt-4 mt-2">
+            <div className="text-base font-medium p-2">Login as:</div>
+            <Button 
+              variant="outline" 
+              className="w-full justify-start mb-2"
+              onClick={() => {
+                handleLogin("Super Admin");
+                setIsMenuOpen(false);
+              }}
+            >
+              Super Admin Login
+            </Button>
+            <Button 
+              variant="outline" 
+              className="w-full justify-start mb-2"
+              onClick={() => {
+                handleLogin("Staff");
+                setIsMenuOpen(false);
+              }}
+            >
+              Staff Login
+            </Button>
+            <Button 
+              variant="outline" 
+              className="w-full justify-start"
+              onClick={() => {
+                handleLogin("Student");
+                setIsMenuOpen(false);
+              }}
+            >
+              Student Login
+            </Button>
+          </div>
         </nav>
       </div>
     </header>
