@@ -1,8 +1,7 @@
-
 import { 
   Code, LucideIcon, Trophy, Palette, Brush, Music, 
   BookOpen, Microscope, Laptop, BookMarked, BarChart, Bolt, 
-  Football, Tennis, Running, Volleyball, Swim, Users, 
+  Soccer, TableTennis, Activity, Volleyball, Waves, Users, 
   Camera, PenTool, ChefHat, Coffee, Book, HeartHandshake
 } from "lucide-react";
 
@@ -136,22 +135,22 @@ export const clubs: Club[] = [
     categories: [
       {
         title: "Team Sports",
-        icon: Football,
+        icon: Soccer,
         description: "Participate in football, basketball, volleyball and more"
       },
       {
         title: "Racquet Sports",
-        icon: Tennis,
+        icon: TableTennis,
         description: "Join tennis, badminton, and table tennis competitions"
       },
       {
         title: "Athletics",
-        icon: Running,
+        icon: Activity,
         description: "Track and field events, marathons, and fitness challenges"
       },
       {
         title: "Aquatics",
-        icon: Swim,
+        icon: Waves,
         description: "Swimming, water polo, and diving activities"
       }
     ],
